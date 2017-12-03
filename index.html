@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+  <script src="https://d3js.org/d3.v4.js"></script>
+  <script src="data.js"></script>
+  <style>
+  #word {
+    position: absolute;
+    right: 10px;
+    top:10px;
+    max-width: 33%;
+  }
+  #edges {
+    margin:0 auto;
+    max-width: 33%;
+    left: 33%;
+  }
+  #hidden {
+    position: absolute;
+    left: 10px;
+    top:10px;
+    width: 33%;
+    align-items: center;
+  }
+  .hidden_frame{
+    height: 55px;
+    border-width: 2px;
+    border-color: #EBBA95;
+    border-style: solid;
+  }
+  .inactive{
+    visibility: hidden
+  }
+  .active{
+    visibility: visible
+  }
+  </style>
+  </head>
+
+  <body>
+    <div id="main">
+      <div id="hidden"></div>
+      <div id="edges"></div>
+      <div id="word"></div>
+    </div>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/wordcloud.js"></script>
+    <script src="data_viz.js"></script>
+  </body>
+
+</html>
