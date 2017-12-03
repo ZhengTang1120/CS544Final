@@ -122,7 +122,32 @@ for(var i=0; i<words.length; i++){
 			                for (var i=0;i<rects.length;i++){
 						    	rects[i].color = d3.lab(lScale(Math.abs(this.response[i])),0,hScale(this.response[i]));
 						    }
-							d3.selectAll(".hidden_units").transition().duration(100).call(setAttrs);			            }
+							d3.selectAll(".hidden_units").transition().duration(100).call(setAttrs);
+							Highcharts.chart('chart', {
+							    title: {
+							        text: null
+							    },
+							    yAxis: {
+							        title: {
+							            text: 'response'
+							        }
+							    },
+							    xAxis: {
+							    	title: {
+							    		text: 'dimension'
+							    	}
+							    },
+							    legend: {
+							        layout: 'vertical',
+							        align: 'right',
+							        verticalAlign: 'middle'
+							    },
+							    series: [{
+							    	name: this.name,
+							        data: this.response
+							    }]
+							});		           
+						}
 			    	}
 		    	}
 	        }
@@ -160,4 +185,3 @@ function setEdges(){
 	}
 }
 setEdges();
-
