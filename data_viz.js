@@ -31,7 +31,7 @@ function setRect(){
 var rScale = d3.scaleLinear().domain([-a, a]).range([0, width_w/4]);
 var svg = d3.select("#colorlegend")
     .append("svg")
-svg.attr("width", width_w/4)
+svg.attr("width", width_w/3)
 .attr("height", 50)
 .append("g")
 .selectAll("rect")
