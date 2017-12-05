@@ -10,7 +10,7 @@ for (var i=0;i<words.length;i++){
 	}
 }
 var a = Math.min(Math.abs(minr), maxr);
-var lScale = d3.scaleLinear().domain([0, a]).range([0,100]);
+var lScale = d3.scaleLinear().domain([0, a]).range([50,100]);
 var hScale = d3.scaleLinear().domain([-a, a]).range([-100,100]);
 function setRect(){
 	for (var i=0;i<hidden_units.length;i++){

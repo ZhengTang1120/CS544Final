@@ -8,7 +8,7 @@ import json
 def load_models(file_name):
     if os.path.isfile(file_name):
         content = pickle.load(open(file_name))
-        return content[0], content[1], content[2]
+        return content[0], content[1], content[2], content[3]
     else:
         print "Model Not Found"
 
@@ -38,7 +38,7 @@ def get_clusters(data):
 	return word_clusters, hidden_clusters
 
 def get_details():
-	model, word_id, tag_id = load_models("lstm.model")
+	model, word_id, tag_id, cells = load_models("lstm.model")
 	embeds = get_pretrained_embedings("glove.6B.200d.txt", word_id, 200)
 	word_id, id_word, tag_id, id_tag = build_features_lower("PTBSmall", "train.tagged")
 	data = get_matrix(model)
@@ -61,6 +61,9 @@ def get_details():
 	return res, hidden_clusters, edges
 
 print json.dumps(get_details()[0])
+print json.dumps(get_details()[1])
+print json.dumps(get_details()[2])
+
 
 
 
