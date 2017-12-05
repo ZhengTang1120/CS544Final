@@ -12,6 +12,8 @@ for (var i=0;i<words.length;i++){
 var a = Math.min(Math.abs(minr), maxr);
 var lScale = d3.scaleLinear().domain([0, a]).range([50,100]);
 var hScale = d3.scaleLinear().domain([-a, a]).range([-100,100]);
+var width_w = window.innerWidth;
+var height_w = window.innerHeight;
 function setRect(){
 	for (var i=0;i<hidden_units.length;i++){
 		var k = Math.ceil(hidden_units[i].length/2)
@@ -26,6 +28,27 @@ function setRect(){
 		}
 	}
 }
+var rScale = d3.scaleLinear().domain([-a, a]).range([0, width_w/4]);
+var svg = d3.select("#colorlegend")
+    .append("svg")
+svg.attr("width", width_w/4)
+.attr("height", 50)
+.append("g")
+.selectAll("rect")
+.data(rScale.ticks(1000))
+.enter()
+.append("rect")
+.attr("x",  function(d) { return rScale(d); })
+.attr("y", 1)
+.attr("width", width_w/3000)
+.attr("height", 25)
+.attr("fill", function(d){ 
+    return d3.lab(lScale(Math.abs(d)),0,hScale(d));
+})
+.attr("transform", "translate(20,5)")
+svg.append("g")
+.attr("transform", "translate(20,31)")
+.call(d3.axisBottom(rScale).ticks(5));
 
 function setAttrs(sel) {
     // WRITE THIS PART.
@@ -54,7 +77,7 @@ function setAttrs(sel) {
 }
 
 setRect();
-var gs = d3.select("#hidden")
+var gs = d3.select("#hidden_span")
 		.selectAll("div")
 		.data(hidden_units)
 		.enter()
@@ -84,9 +107,6 @@ Highcharts.seriesTypes.wordcloud.prototype.deriveFontSize = function (relativeWe
   // Will return a fontSize between 0px and 25px.
   return Math.floor(maxFontSize * relativeWeight);
 };
-
-var width_w = window.innerWidth;
-var height_w = window.innerHeight;
 
 for(var i=0; i<words.length; i++){
 	Highcharts.chart("word_cluster_"+i.toString(), {
